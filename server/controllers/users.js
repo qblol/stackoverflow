@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const config = require('../config');
 
 module.exports = {
   getUsers: (req,res) => {
@@ -51,10 +52,10 @@ module.exports = {
     User.findOne({username: req.body.username})
     .then((data) => {
       if(data != null) {
-        let verification = bcrypt.compareSync(req.body.username, data.password)
-        if(verification == true) {
-          let token = jwt.sign({username: data.username}, saltRounds, {expiresIn : 600*600})
-          res.json(token)
+        let verification = bcrypt.compareSync(req.body.password, data.password)
+        if(bcrypt.compareSync(req.body.password, data.password)) {
+          let token = jwt.sign( {username: data.username}, config.secret, {expiresIn : 600*600});
+          res.send(token)
         }else{
           res.send('Wrong password')
         }
