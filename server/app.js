@@ -12,7 +12,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());
 
 const users = require('./routes/users');
+const questions = require('./routes/questions');
 app.use('/api/users', users);
+app.use('/api/questions', questions);
 
 app.listen(3000);
 
