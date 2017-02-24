@@ -3,8 +3,8 @@ const Question = require('../models/question');
 
 module.exports = {
   getQuestions: (req,res) => {
-    User.find() // .sort('date')
-    .then((data) => {
+    Question.find() // .sort('date')
+    .then(function(data) {
       res.json(data)
     })
   },
@@ -41,7 +41,7 @@ module.exports = {
   },
   answerQuestion: (req,res) => {
     Question.findOne({_id: req.params._id})
-    .then((data){
+    .then((data) => {
       data.answers.push({
         _id: mongoose.Types.ObjectId(),
         content: req.body.content,

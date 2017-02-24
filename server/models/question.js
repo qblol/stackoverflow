@@ -8,7 +8,7 @@ const questionSchema = new Schema({
   postedBy: Schema.Types.Mixed,
   upvote: Schema.Types.Mixed,
   downvote: Schema.Types.Mixed,
-  answers: Schema.types.Mixed
+  answers: Schema.Types.Mixed
 },{
   timestamps: true
 });
